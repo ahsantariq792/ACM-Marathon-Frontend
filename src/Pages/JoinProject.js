@@ -1,22 +1,22 @@
 import React from 'react'
 import { Button } from '@mui/material';
 
-const CreateNewProject = () => {
+const JoinProject = () => {
   return (
     <>
-
+      <div className='createNewProject'>
+        <h2>JOIN PROJECT</h2>
+      </div>
       <div className='parentcreateNewProject shadow'>
-        <div className='createNewProject'>
-          <h2>CREATE NEW PROJECT</h2>
-        </div>
+
         <div className='childcreateNewProject'>
-          <p>ENTER PROJECT NAME</p>
+          <p>ENTER PROJECT ID</p>
           <input></input>
         </div>
         <div className='buttonContainer'>
 
           <Button id="btn" variant="contained" color="primary" type="submit">
-            New Project
+            Join Project
           </Button>
 
         </div>
@@ -26,4 +26,4 @@ const CreateNewProject = () => {
   )
 }
 
-export default CreateNewProject;
+export default JoinProject;

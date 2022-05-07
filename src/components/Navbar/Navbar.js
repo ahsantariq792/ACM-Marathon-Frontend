@@ -29,19 +29,32 @@ function Navbar() {
                                 </li>
                             </Link>
 
+                            <Link to="/charts">
+                                <li className="nav-item">
+                                    <a className="nav-link">charts</a>
+                                </li>
+                            </Link>
+
+
                             <Link to="/projectdetails">
+                                <li className="nav-item">
+                                    <a className="nav-link">Details</a>
+                                </li>
+                            </Link>
+
+                            <Link to="/projects">
                                 <li className="nav-item">
                                     <a className="nav-link">Projects</a>
                                 </li>
                             </Link>
 
-                            <Link to="/createnewproject">
+                            <Link to="/joinproject">
                                 <li className="nav-item">
-                                    <a className="nav-link">NewProject</a>
+                                    <a className="nav-link">JoinProject</a>
                                 </li>
                             </Link>
 
-                            <li className="nav-item dropdown">
+                            {/* <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Logout
                                 </a>
@@ -49,7 +62,7 @@ function Navbar() {
                                     <li><hr className="dropdown-divider" /></li>
                                     <li><a className="dropdown-item">Logout</a></li>
                                 </ul>
-                            </li>
+                            </li> */}
                         </ul>
 
                     </div>

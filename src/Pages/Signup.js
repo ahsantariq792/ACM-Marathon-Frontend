@@ -4,8 +4,8 @@ import { Formik, Form } from 'formik'
 import { TextField } from '../components/TextField'
 import * as yup from 'yup'
 import signupPic from "../images/signup.jpg"
-// import { baseurl } from "../Core"
-// import axios from "axios"
+import { baseurl } from "../Core"
+import axios from "axios"
 import { useNavigate } from 'react-router-dom'
 
 
@@ -18,24 +18,24 @@ const Signup = () => {
         console.log(values)
         resetForm({})
 
-        // const { email, name, password, cpassword, phone } = values
+        const { email, name, password, cpassword, phone } = values
 
-        // const res = await axios.post(`${baseurl}/api/v1/signup`,
-        //     {
-        //         email, name, phone, password, cpassword
-        //     }, {
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // })
+        const res = await axios.post(`${baseurl}/api/v1/signup`,
+            {
+                email, name, phone, password, cpassword
+            }, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
 
-        // if (!res) {
-        //     console.log("Invalid registration");
-        // } else {
-        //     console.log("registration completed");
-        //     navigate("/login")
+        if (!res) {
+            console.log("Invalid registration");
+        } else {
+            console.log("registration completed");
+            navigate("/login")
 
-        // }
+        }
     }
 
     const validate = yup.object({
@@ -55,9 +55,9 @@ const Signup = () => {
             .string('Enter your password')
             .min(8, 'Password should be of minimum 8 characters length')
             .required('Password is required'),
-        cpassword: yup
-            .string('Enter your password')
-            .min(8, 'Password should be of minimum 8 characters length')
+        avatar: yup
+            .string('Enter your Avatar')
+            .min(2, 'Avatar should be of minimum 2 characters length')
             .required('Password is required'),
     })
 
