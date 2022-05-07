@@ -18,22 +18,23 @@ const Signup = () => {
         console.log(values)
         resetForm({})
 
-        const { email, name, password, cpassword, phone } = values
+        const { email, firstName, password, lastName, avatar } = values
 
-        const res = await axios.post(`${baseurl}/api/v1/signup`,
+        const res = await axios.post(`${baseurl}/User/signup`,
             {
-                email, name, phone, password, cpassword
-            }, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+                email, firstName, lastName, password, avatar
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
 
         if (!res) {
             console.log("Invalid registration");
         } else {
             console.log("registration completed");
-            navigate("/login")
+            navigate("/")
 
         }
     }
@@ -43,11 +44,11 @@ const Signup = () => {
             .string('Enter your email')
             .email('Enter a valid email')
             .required('Email is required'),
-        fname: yup
+        firstName: yup
             .string('Enter your password')
             .min(3, 'Name should be of minimum 3 characters length')
             .required('Name is required'),
-        lname: yup
+        lastName: yup
             .string('Enter your password')
             .min(3, 'Name should be of minimum 3 characters length')
             .required('Name is required'),
@@ -72,13 +73,11 @@ const Signup = () => {
                 <div className="col-md-5">
                     <Formik
                         initialValues={{
-                            fname: 'Ahsan',
-                            lname: 'Tariq',
-                            email: 'ahsan1244@gmail.com',
+                            firstName: 'Ahsan',
+                            lastName: 'Tariq',
+                            email: 'ahsan122244@gmail.com',
                             password: '12345678',
-                            cpassword: '12345678',
-                            // picture: ''
-
+                            avatar: 'avatar'
                         }}
                         validationSchema={validate}
                         onSubmit={submit}
@@ -88,12 +87,11 @@ const Signup = () => {
 
                                 <h1 className="my-4 font-weight-bold-display-4">Sign Up</h1>
                                 <Form>
-                                    <TextField label="First Name" name="fname" type="text"></TextField>
-                                    <TextField label="Last Name" name="lname" type="text"></TextField>
+                                    <TextField label="First Name" name="firstName" type="text"></TextField>
+                                    <TextField label="Last Name" name="lastName" type="text"></TextField>
                                     <TextField label="Email" name="email" type="text"></TextField>
                                     <TextField label="Password" name="password" type="password"></TextField>
-                                    <TextField label="Confirm Password" name="cpassword" type="password"></TextField>
-                                    {/* <TextField label="Avatar" name="picture" type="file"></TextField> */}
+                                    <TextField label="Avatar" name="avatar" type="text"></TextField>
                                     <button className="btn btn-success mt-3 w-50 m-2" style={{ height: "40px" }} type="submit">Submit</button>
                                     <button className="btn btn-danger mt-3 w-25 m-2" style={{ height: "40px" }} type="reset">Reset</button>
                                 </Form>

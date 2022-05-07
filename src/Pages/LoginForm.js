@@ -5,6 +5,10 @@ import * as yup from 'yup';
 import { TextField } from '@mui/material';
 import { Link } from 'react-router-dom';
 import LoginPic from "../images/login.jpg"
+import { baseurl } from "../Core"
+import axios from "axios"
+import { useNavigate } from 'react-router-dom'
+
 
 const validationSchema = yup.object({
   email: yup
@@ -24,18 +28,49 @@ const validationSchema = yup.object({
 
 function Login() {
 
+  let navigate = useNavigate();
 
 
-  const submit = (values) => {
+  const submit = async (values ) => {
     console.log("values", values)
+
+    const { email, password } = values
+
+    var data = JSON.stringify({
+      "email": email,
+      "password": password
+    });
+    console.log(data)
+
+    var config = {
+      method: 'post',
+      url: `${baseurl}/loginuser/loginUser`,
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+    
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      navigate(`/projects/${response.data.ID}`)
+      console.log("id", response.data.ID)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
   }
+
+
+
 
   const formik = useFormik({
     validationSchema: validationSchema,
     initialValues: {
-      email: '',
-      password: '',
-
+      email: 'ahsan122244@gmail.com',
+      password: '12345678',
     },
     onSubmit: submit
   },
@@ -92,9 +127,9 @@ function Login() {
                 </div>
                 <div className="d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
-                    <div style={{color: "green"}}>New User?</div>
+                    <div style={{ color: "green" }}>New User?</div>
                   </div>
-                  <div style={{color: "blue"}}>Forget Password?</div>
+                  <div style={{ color: "blue" }}>Forget Password?</div>
                 </div><br />
                 <div className="pb-2">
                   <button type="submit" id="userbtn" className="btn btn-dark w-100 font-weight-bold mt-2">LOGIN</button>

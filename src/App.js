@@ -19,7 +19,7 @@ function App() {
         <Route exact path="/" element={<Login/>} />
         <Route path="/createtask" element={<CreateTask />} />
         <Route path="/createnewproject" element={<CreateNewProject />} />
-        <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/:id" element={<Projects />} />
         <Route path="/projectdetails" element={<ProjectDetails />} />
         <Route path="/charts" element={<Charts />} />
         <Route path='/joinproject' element={<JoinProject/>}/>

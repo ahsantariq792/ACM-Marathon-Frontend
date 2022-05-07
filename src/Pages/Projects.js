@@ -1,8 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '@mui/material'
 import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import axios from 'axios'
+import { baseurl } from '../Core'
 
 function Projects() {
+
+    const [userdata, setUserdata] = useState()
+    const { id } = useParams()
+    console.log(id)
+
+    useEffect(() => {
+        var config = {
+            method: 'get',
+            url: 'http://localhost:7500/project/getuserproject?userId=6275614ba02cdace1c9d17aa',
+            headers: {
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.NjI3NTYxNGJhMDJjZGFjZTFjOWQxN2Fh.fTVNuh7Qk2wwWeYhE2T9MwiFFF1chM0uP3ytegPuOPQ'
+            }
+        };
+
+        axios(config)
+            .then(function (response) {
+                console.log(response.data);
+                setUserdata(() => response.data)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        return () => {
+            console.log("cleanup")
+        }
+    }, [])
+
     return (
         <>
 
@@ -21,40 +52,18 @@ function Projects() {
                     <table className="table">
                         <thead>
                             <th>Project Name</th>
-                            <th>Project Nature</th>
-                            <th>Status</th>
+                            <th>Project Key</th>
                             <th>Details</th>
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td data-label="Project Name">aa</td>
-                                <td data-label="Project Nature">aa</td>
-                                <td data-label="Status">aa</td>
-                                <td data-label="Details"><a href="#" className="btn">See Details</a></td>
-                            </tr>
-
-                            <tr>
-                                <td data-label="Project Name">aa</td>
-                                <td data-label="Project Nature">aa</td>
-                                <td data-label="Status">aa</td>
-                                <td data-label="Details"><a href="#" className="btn">See Details</a></td>
-                            </tr>
-
-                            <tr>
-                                <td data-label="Project Name">aa</td>
-                                <td data-label="Project Nature">aa</td>
-                                <td data-label="Status">aa</td>
-                                <td data-label="Details"><a href="#" className="btn">See Details</a></td>
-                            </tr>
-
-                            <tr>
-                                <td data-label="Project Name">aa</td>
-                                <td data-label="Project Nature">aa</td>
-                                <td data-label="Status">aa</td>
-                                <td data-label="Details"><a href="#" className="btn">See Details</a></td>
-                            </tr>
-
+                            {userdata?.map((post, index) => (
+                                <tr  key={index}>
+                                    <td data-label="Project Name">{post?.projectName}</td>
+                                    <td data-label="Project Key">{post?.projectKey}</td>
+                                    <td data-label="Details"><a className="btn">See Details</a></td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
