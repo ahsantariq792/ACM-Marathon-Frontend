@@ -1,0 +1,357 @@
+.error {
+    position: absolute;
+    color: red;
+    font-size: .6rem;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===================================================
+|||||||||||| Navbar
+====================================================== */
+
+.nav-link {
+    font-size: 18px;
+    font-weight: 600;
+
+}
+
+.collapse {
+    /* display: flex;
+    justify-content: flex-end;
+    align-items: flex-end; */
+    margin-left: 25%;
+
+}
+
+.nav-item {
+    margin-left: 2%;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    padding-right: 20px;
+    margin: 0% 8%;
+    border-right-style: solid;
+}
+
+
+/* ===================================================
+|||||||||||| create new Task Form
+====================================================== */
+
+
+.container-form {
+    max-width: 1300px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 30px;
+}
+
+.title {
+    text-align: center;
+}
+
+.container-form .header_title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #2b2b2b;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+.container-form .form {
+    width: 100%;
+    margin: 30px auto;
+    padding: 30px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, .325);
+    border: 1px solid #999999;
+    border-radius: 7px;
+
+}
+
+.container-form .form .section {
+    width: 100%;
+    margin-bottom: 20px;
+    padding-bottom: 30px;
+}
+
+.container-form .form #last_section {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: none;
+}
+
+.container-form .form .section .input_field {
+    margin-top: 5px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.container-form .form .section .input_field label {
+    width: 100px;
+    color: black;
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+.container-form .form .section .input_field .form-input,
+.container-form .form .section .input_field .textarea {
+    width: 100%;
+    outline: none;
+    font-size: 15px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+
+
+.container-form .form .section .input_field:last-child {
+    margin-bottom: 0;
+}
+
+
+
+@media (max-width: 800px) {
+    .container-form .form .section .input_field {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .container-form .form .section .input_field label {
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-width: 750px) {
+    .container-form .form .section .input_field .fuel_div {
+        display: block;
+    }
+}
+
+@media (max-width: 375px) {
+    .container-form {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* ===================================================
+|||||||||||| create new Project
+====================================================== */
+.mainprojectDetals {
+    width: 90%;
+}
+
+.createNewProject {
+    border: 6px crimson solid;
+    width: 60vw;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 100px;
+}
+
+.parentCard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.headTasks {
+    display: flex;
+    justify-content: center;
+}
+
+.parentcreateNewProject {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.headCreateNewProject {
+    display: flex;
+    justify-content: center;
+}
+
+.headCreateNewProject>h1 {
+    font-size: 60px;
+    color: gray;
+    letter-spacing: 15px;
+    font-weight: 100;
+}
+
+.childcreateNewProject {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    height: 50%;
+}
+
+.childcreateNewProject>P {
+    font-size: 30px;
+    color: gray;
+    letter-spacing: 5px;
+    font-weight: 500;
+}
+
+.childcreateNewProject>input {
+    width: 60%;
+    height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 22px;
+    letter-spacing: 2px;
+}
+
+.newProjectButton {
+
+    width: 300px;
+    height: 50px;
+    background-color: lightgray;
+    color: crimson;
+    font-size: 30px;
+    border-radius: 5px;
+
+
+}
+
+.cardTask {
+    width: 300px;
+    height: 350px;
+    border: 2px gray solid;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.cardTask>div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.details {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center;
+}
+
+.details>button {
+    width: 100px;
+    height: 40px;
+}
+
+/* ===================================================
+  |||||||||||| Project Details
+  ====================================================== */
+
+.headprojectDetails>h1 {
+    font-size: 60px;
+    color: gray;
+    letter-spacing: 15px;
+    font-weight: 100;
+    text-align: center;
+}
+
+.projectDetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.childProjectDetails {
+    display: flex;
+    width: 250px;
+    justify-content: space-between;
+}
+
+.childProjectDetails>p {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.createNewTask {
+    height: 60px;
+
+}
+
+@media screen and (max-width: 1400px) {
+    .headCreateNewProject>h1 {
+        font-size: 40px;
+        font-weight: 500;
+        letter-spacing: 8px;
+
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .headCreateNewProject>h1 {
+        font-size: 30px;
+        font-weight: 500;
+        letter-spacing: 5px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .projectDetails>div {
+        width: 85vw !important;
+        text-align: center;
+        /* display: flex;
+      justify-content: center; */
+    }
+
+    .projectDetails {
+        display: inline-block !important;
+    }
+
+    .createNewProject {
+        width: 90vw;
+        margin-top: 50px;
+    }
+
+    .newProjectButton {
+        width: 200px;
+    }
+
+    .childcreateNewProject>input {
+        width: 80%;
+        height: 50px;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 20px;
+        letter-spacing: 2px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .headCreateNewProject>h1 {
+        font-size: 25px;
+        font-weight: 500;
+        letter-spacing: 2px;
+    }
+
+}
