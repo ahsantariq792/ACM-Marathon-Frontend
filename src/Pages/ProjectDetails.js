@@ -9,12 +9,47 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Button } from '@mui/material';
+import { Button, getAccordionDetailsUtilityClass } from '@mui/material';
 import { baseurl } from '../Core'
 import { Link } from 'react-router-dom';
 import ImgMediaCard from '../components/ImgMediaCard';
+import { getuser,addusertoproject } from '../api/api';
+import userEvent from '@testing-library/user-event';
+// import { useState } from 'react';
+const BasicTable = ({projectId}) => {
+    const [loader,setLoader]=useState()
+    const [user,setUser]=useState()
+    const getData = async (id,auth) => {
+        try {
+            setLoader(true);
+            const api = await getuser(id, auth)
+            console.log(api)
+    
+            // if (search.length > 0) {
+            //     let filtered = api.filter((filtered) => {
+            //         return filtered._id.toLowerCase().includes(search.toLowerCase()) 
 
-const BasicTable = () => {
+            //     })
+            //     setOrders(filtered)
+            // }
+            // else {
+                setUser(api)
+            // }
+        } catch (err) {
+            console.log(err.response);
+        } finally {
+            setLoader(false);
+        }
+    }
+    const [id,setId]=useState()
+    const [auth,setAuth]=useState()
+    useEffect(async () => {
+        const id = await localStorage.getItem('Id')
+        const auth = await localStorage.getItem('Token')
+        setId(id)
+        setAuth(auth)
+        getData(id,auth)
+    }, [])
     return (
         <TableContainer component={Paper}>
             <Table sx={{
@@ -30,21 +65,21 @@ const BasicTable = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    <TableRow >
-                        <TableCell align="center">Ahsan Tariq</TableCell>
-                        <TableCell align="center"><Button id="btn" variant="contained" color="success" type="submit">ADD AS ADMIN</Button></TableCell>
-                        <TableCell align="center"><Button id="btn" variant="contained" color="primary" type="submit">ADD AS MEMBER</Button></TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell align="center">Ahsan Tariq</TableCell>
-                        <TableCell align="center"><Button id="btn" variant="contained" color="success" type="submit">ADD AS ADMIN</Button></TableCell>
-                        <TableCell align="center"><Button id="btn" variant="contained" color="primary" type="submit">ADD AS MEMBER</Button></TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell align="center">Ahsan Tariq</TableCell>
-                        <TableCell align="center"><Button id="btn" variant="contained" color="success" type="submit">ADD AS ADMIN</Button></TableCell>
-                        <TableCell align="center"><Button id="btn" variant="contained" color="primary" type="submit">ADD AS MEMBER</Button></TableCell>
-                    </TableRow>
+                    {user?.map((item,index)=>{
+                        console.log(item)
+                        return(
+                            <TableRow >
+                            <TableCell align="center">{item.firstName} {item.lastName}</TableCell>
+                            <TableCell align="center"><Button onClick={()=>{
+                                addusertoproject(id,{admin:true,addId:item._id,email:item.email},auth,projectId).then((res)=>console.log(res))
+                            }} id="btn" variant="contained" color="success" type="submit">ADD AS ADMIN</Button></TableCell>
+                            <TableCell align="center"><Button onClick={()=>{
+                                addusertoproject(id,{admin:false,addId:item._id,email:item.email},auth,projectId).then((res)=>console.log(res))
+                            }} id="btn" variant="contained" color="primary" type="submit">ADD AS MEMBER</Button></TableCell>
+                        </TableRow>
+                        )
+                    })}
+                   
 
                 </TableBody>
             </Table>
@@ -146,7 +181,7 @@ const ProjectDetails = (navigate) => {
                         <h3>ADD EMPLOYEES</h3>
                     </div>
                     <div>
-                        <BasicTable></BasicTable>
+                        <BasicTable projectId={id}></BasicTable>
                     </div>
 
                 </div>
