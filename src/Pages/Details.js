@@ -4,6 +4,56 @@ import { useParams, Link } from 'react-router-dom';
 // import { baseurl } from '../core';
 // import axios from 'axios';
 import { Button } from '@mui/material';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
+
+
+
+const BasicTable = () => {
+    return (
+        <TableContainer component={Paper}>
+            <Table sx={{
+                minWidth: 350, [`& .${tableCellClasses.root}`]: {
+                    borderBottom: "none"
+                }
+            }} aria-label="simple table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell className="TableCell" align="center">Employees</TableCell>
+                        <TableCell className="TableCell" align="center">Admin</TableCell>
+                        <TableCell className="TableCell" align="center">Member</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    <TableRow >
+                        <TableCell align="center">Ahsan Tariq</TableCell>
+                        <TableCell align="center"><Button id="btn" variant="contained" color="success" type="submit">ADD AS ADMIN</Button></TableCell>
+                        <TableCell align="center"><Button id="btn" variant="contained" color="primary" type="submit">ADD AS MEMBER</Button></TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell align="center">Ahsan Tariq</TableCell>
+                        <TableCell align="center"><Button id="btn" variant="contained" color="success" type="submit">ADD AS ADMIN</Button></TableCell>
+                        <TableCell align="center"><Button id="btn" variant="contained" color="primary" type="submit">ADD AS MEMBER</Button></TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell align="center">Ahsan Tariq</TableCell>
+                        <TableCell align="center"><Button id="btn" variant="contained" color="success" type="submit">ADD AS ADMIN</Button></TableCell>
+                        <TableCell align="center"><Button id="btn" variant="contained" color="primary" type="submit">ADD AS MEMBER</Button></TableCell>
+                    </TableRow>
+
+                </TableBody>
+            </Table>
+        </TableContainer>
+    );
+}
+
+
 
 export default function Details(props) {
 
@@ -52,6 +102,17 @@ export default function Details(props) {
                         </p>
                     </div>
                 </ul>
+
+                <div className='employees'>
+                    <div className='employeeslist'>
+                        <h3>ADD EMPLOYEES</h3>
+                    </div>
+                    <div>
+                        <BasicTable></BasicTable>
+                    </div>
+
+                </div>
+
             </div>
 
             <div classNameName='py-05'>
