@@ -95,12 +95,10 @@ const ProjectDetails = (navigate) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <div className='mainprojectDetals'>
-                {/* <div className='headCreateNewProject'>
-                    <h1>PROJECT DETAILS</h1>
-                </div> */}
+                
 
                 <div className="title m-4">
-                    <h2>TASK DETAILS</h2>
+                    <h2>PROJECT DETAILS</h2>
                 </div>
 
                 <div className='projectDetails'>
