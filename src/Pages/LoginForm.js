@@ -53,10 +53,9 @@ function Login() {
     
     axios(config)
     .then(function (response) {
-      console.log(JSON.stringify(response.data));
+ 
       navigate(`/projects/${response.data.ID}`)
       console.log("id", response.data.ID)
-      console.log("token", response.data.Token)
       localStorage.setItem("Token",response.data.Token)
       localStorage.setItem("Id",response.data.ID)
 
