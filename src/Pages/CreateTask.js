@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { TextField } from '@mui/material';
-
+import { addtask } from '../api/api'
 
 const validationSchema = yup.object({
 
@@ -26,10 +26,25 @@ const validationSchema = yup.object({
 
 
 function CreateTask() {
-
-
+   
 
     const submit = async (values) => {
+        const id = localStorage.getItem("Id")
+        const auth = localStorage.getItem("Token")
+    values.projectId="6276f8362b544ee54b745863"
+    values.status="to do"
+    console.log(values)
+        addtask(id, values, auth)
+            .then((res) => {
+                if (res.status === 200) {
+
+                }
+                else if (res.status === 409) {
+
+                }
+                else {
+                }
+            })
         console.log(values)
     }
 
@@ -102,7 +117,7 @@ function CreateTask() {
                                     error={formik.touched.taskNature && Boolean(formik.errors.taskNature)}
                                     helperText={formik.touched.taskNature && formik.errors.taskNature}
                                 />
-                            </div>                       
+                            </div>
 
                             <div className="input_field">
                                 <label className="form-table">Description</label>
@@ -122,9 +137,9 @@ function CreateTask() {
 
 
 
-                           
 
-                            
+
+
 
                         </div>
 
