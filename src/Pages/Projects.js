@@ -5,9 +5,10 @@ import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import axios from 'axios'
 import { baseurl } from '../Core'
+import { useNavigate } from 'react-router-dom'
 
 function Projects() {
-
+    let navigate = useNavigate();
     const [userdata, setUserdata] = useState()
     const { id } = useParams()
     console.log(id)
@@ -33,7 +34,10 @@ function Projects() {
             console.log("cleanup")
         }
     }, [])
+   const toGo=(id)=>{
 
+navigate(`/projectdetails/${id}`)
+   }
     return (
         <>
 
@@ -55,13 +59,15 @@ function Projects() {
                             <th>Project Key</th>
                             <th>Details</th>
                         </thead>
-
+                        {/* navigate(`/projects/${response.data.ID}`) */}
                         <tbody>
                             {userdata?.map((post, index) => (
+                               
+
                                 <tr  key={index}>
                                     <td data-label="Project Name">{post?.projectName}</td>
                                     <td data-label="Project Key">{post?.projectKey}</td>
-                                    <td data-label="Details"><a className="btn">See Details</a></td>
+                                    <td data-label="Details" ><a onClick={()=>{toGo(post?._id)}} className="btn">See Details</a></td>
                                 </tr>
                             ))}
                         </tbody>
