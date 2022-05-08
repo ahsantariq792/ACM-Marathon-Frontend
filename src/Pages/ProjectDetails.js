@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect ,useState} from 'react'
 import Card from '../components/card'
-
-
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -10,6 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
+import { baseurl } from '../Core'
 import { Link } from 'react-router-dom';
 import ImgMediaCard from '../components/ImgMediaCard';
 
@@ -44,16 +45,7 @@ const BasicTable = () => {
                         <TableCell align="center"><Button id="btn" variant="contained" color="success" type="submit">ADD AS ADMIN</Button></TableCell>
                         <TableCell align="center"><Button id="btn" variant="contained" color="primary" type="submit">ADD AS MEMBER</Button></TableCell>
                     </TableRow>
-                    <TableRow>
-                        <TableCell align="center">Ahsan Tariq</TableCell>
-                        <TableCell align="center"><Button id="btn" variant="contained" color="success" type="submit">ADD AS ADMIN</Button></TableCell>
-                        <TableCell align="center"><Button id="btn" variant="contained" color="primary" type="submit">ADD AS MEMBER</Button></TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell align="center">Ahsan Tariq</TableCell>
-                        <TableCell align="center"><Button id="btn" variant="contained" color="success" type="submit">ADD AS ADMIN</Button></TableCell>
-                        <TableCell align="center"><Button id="btn" variant="contained" color="primary" type="submit">ADD AS MEMBER</Button></TableCell>
-                    </TableRow>
+                   
                 </TableBody>
             </Table>
         </TableContainer>
@@ -61,7 +53,45 @@ const BasicTable = () => {
 }
 
 
-const ProjectDetails = () => {
+const ProjectDetails = (navigate) => {
+
+
+   console.log("route",navigate)
+    var token = localStorage.getItem("Token")
+    var  Id=localStorage.getItem("Id")
+  console.log("Id",Id)
+    const { id } = useParams()
+    console.log("id",id)
+    console.log(token)
+ const [projectTasks,setProjectTasks]=useState([])
+
+ const handler = () => {
+    var config = {
+        method: 'get',
+        url: `${baseurl}/project/gettaskofproject?userId=${Id}&projectId=${id}`,
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    };
+
+    axios(config)
+        .then(function (response) {
+            console.log(response.data);
+            setProjectTasks(() => response.data)
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+};
+
+
+ useEffect(()=>{
+
+    handler()
+ },[])
+
+
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <div className='mainprojectDetals'>
@@ -85,38 +115,25 @@ const ProjectDetails = () => {
                     </div>
                 </div>
                 <div className='parentCard'>
+
+                    {
+                        projectTasks?.map((item,key)=>{
+                            return(
+                                <>
+                                <ImgMediaCard
+                            title={item.taskName}
+                            tasknature={item.taskNature}
+                            status={item.status}
+                            createdby={item.createdBy}
+                            lastupdated={item.updatedAt}
+                        />
+                                </>
+                            )
+                            
+                        })
+                    }
                     
-                    <ImgMediaCard
-                        title="Facebook UI"
-                        tasknature="xyz"
-                        status="done"
-                        createdby="ABC"
-                        lastupdated="22/02/2022"
-                    />
-
-                    <ImgMediaCard
-                        title="Facebook UI"
-                        tasknature="xyz"
-                        status="done"
-                        createdby="ABC"
-                        lastupdated="22/02/2022"
-                    />
-
-                    <ImgMediaCard
-                        title="Facebook UI"
-                        tasknature="xyz"
-                        status="done"
-                        createdby="ABC"
-                        lastupdated="22/02/2022"
-                    />
-
-                    <ImgMediaCard
-                        title="Facebook UI"
-                        tasknature="xyz"
-                        status="done"
-                        createdby="ABC"
-                        lastupdated="22/02/2022"
-                    />
+                   
                 </div>
 
                 <div className='employees'>
