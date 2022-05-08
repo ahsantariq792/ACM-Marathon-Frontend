@@ -8,6 +8,9 @@ import LoginPic from "../images/login.jpg"
 import { baseurl } from "../Core"
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
+import { GlobalContext } from '../context/Context';
+import { useContext } from "react";
+
 
 
 const validationSchema = yup.object({
@@ -30,8 +33,9 @@ function Login() {
 
   let navigate = useNavigate();
 
+  let { state, dispatch } = useContext(GlobalContext);
 
-  const submit = async (values ) => {
+  const submit = async (values) => {
     console.log("values", values)
 
     const { email, password } = values
@@ -45,24 +49,32 @@ function Login() {
     var config = {
       method: 'post',
       url: `${baseurl}/loginuser/loginUser`,
-      headers: { 
+      headers: {
         'Content-Type': 'application/json'
       },
-      data : data
+      data: data
     };
-    
-    axios(config)
-    .then(function (response) {
- 
-      navigate(`/projects/${response.data.ID}`)
-      console.log("id", response.data.ID)
-      localStorage.setItem("Token",response.data.Token)
-      localStorage.setItem("Id",response.data.ID)
 
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    axios(config)
+      .then(function (response) {
+
+        dispatch({
+          type: "USER_LOGIN",
+          payload: {
+            _id: response.data.ID
+          }
+        })
+
+        console.log("id", response.data)
+        localStorage.setItem("Token", response.data.Token)
+        localStorage.setItem("Id", response.data.ID)
+
+        navigate(`/projects/${response.data.ID}`)
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
   }
 

@@ -56,6 +56,7 @@ const BasicTable = () => {
 const ProjectDetails = (navigate) => {
 
 
+
     console.log("route", navigate)
     var token = localStorage.getItem("Token")
     var Id = localStorage.getItem("Id")
@@ -95,7 +96,7 @@ const ProjectDetails = (navigate) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <div className='mainprojectDetals'>
-                
+
 
                 <div className="title m-4">
                     <h2>PROJECT DETAILS</h2>
@@ -124,6 +125,7 @@ const ProjectDetails = (navigate) => {
                             return (
                                 <>
                                     <ImgMediaCard
+                                        id={item._id}
                                         title={item.taskName}
                                         tasknature={item.taskNature}
                                         status={item.status}

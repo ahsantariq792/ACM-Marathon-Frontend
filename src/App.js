@@ -10,22 +10,33 @@ import Charts from './Pages/Charts';
 import Details from './Pages/Details';
 import JoinProject from './Pages/JoinProject';
 import { Routes, Route } from 'react-router-dom';
+import { GlobalContext } from './context/Context';
+import { useContext } from "react";
+import { getNativeSelectUtilityClasses } from '@mui/material';
 
 function App() {
+  let { state, dispatch } = useContext(GlobalContext);
+
+
   return (
     <>
-    <Navbar/>
+      <Navbar />
+
       <Routes>
         <Route path="/signup" element={<Signup />} />
-        <Route exact path="/" element={<Login/>} />
+        <Route exact path="/" element={<Login />} />
         <Route path="/createtask" element={<CreateTask />} />
         <Route path="/createnewproject" element={<CreateNewProject />} />
         <Route path="/projects/:id" element={<Projects />} />
         <Route path="/projectdetails/:id" element={<ProjectDetails />} />
         <Route path="/charts/:id" element={<Charts />} />
-        <Route path="/details" element={<Details />} />
-        <Route path='/joinproject' element={<JoinProject/>}/>
+        <Route path="/details/:id" element={<Details />} />
+        <Route path='/joinproject' element={<JoinProject />} />
       </Routes>
+
+
+
+
     </>
   )
 }

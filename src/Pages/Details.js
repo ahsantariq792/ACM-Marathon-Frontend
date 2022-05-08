@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-// import { baseurl } from '../core';
-// import axios from 'axios';
+import { baseurl } from '../Core';
+import axios from 'axios';
 import { Button } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -58,6 +58,38 @@ const BasicTable = () => {
 export default function Details(props) {
 
     const [posts, setPosts] = useState([])
+
+    const { id } = useParams()
+    console.log("id",id)
+    const ID = localStorage.getItem("Id")
+    console.log("ID",ID)
+    var token = localStorage.getItem("Token")
+
+    
+    const handler = () => {
+        var config = {
+            method: 'get',
+            url: `${baseurl}/project/gettaskdetails?userId=${ID}&taskId=${id}`,
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        };
+
+        axios(config)
+            .then(function (response) {
+                console.log(response.data);
+                setPosts(() => response.data)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+
+    useEffect(() => {
+        handler()
+    }, [])
+
+
 
     return (
 

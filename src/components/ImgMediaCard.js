@@ -26,9 +26,12 @@ export default function ImgMediaCard(props) {
         <Typography variant="p" color="text.secondary">
           Last Updated: {props.lastupdated}
         </Typography>
+        <Typography variant="p" color="text.secondary">
+          ID: {props.id}
+        </Typography>
       </CardContent>
       <CardActions className="cardDetails-btn">
-        <Link to="/details">
+        <Link to={`/details/${props.id}`} style={{textDecoration: "none"}}>
           <Button variant="contained" className="order">Details</Button>
         </Link>
       </CardActions>
