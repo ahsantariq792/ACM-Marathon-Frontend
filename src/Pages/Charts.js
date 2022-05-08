@@ -46,9 +46,14 @@ const data = [
   },
 ];
 
-export default function Charts (){
-   
-    return (
+export default function Charts() {
+
+  return (
+    <>
+      <div className="title m-4">
+        <h2>CHART</h2>
+      </div>
+
       <ResponsiveContainer width="100%" aspect={3}>
         <BarChart
           width={500}
@@ -70,5 +75,7 @@ export default function Charts (){
           <Bar dataKey="uv" fill="#82ca9d" />
         </BarChart>
       </ResponsiveContainer>
-    ); 
+
+    </>
+  );
 }

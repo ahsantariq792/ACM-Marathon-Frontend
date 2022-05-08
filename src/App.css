@@ -532,3 +532,34 @@
 
 
 }
+
+
+
+
+
+
+
+
+/* ===================================================
+|||||||||||| Details 
+====================================================== */
+
+.ul {
+    padding: 4% 20%;
+    margin-top: 2%;
+}
+
+
+
+.full {
+    font-size: 18px;
+    display: flex;
+    margin: 2%;
+    justify-content: space-between;
+}
+
+
+
+.left{
+    font-weight: 600;
+}

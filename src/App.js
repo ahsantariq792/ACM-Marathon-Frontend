@@ -7,6 +7,7 @@ import CreateNewProject from './Pages/createNewProject'
 import ProjectDetails from './Pages/ProjectDetails'
 import Projects from './Pages/Projects';
 import Charts from './Pages/Charts';
+import Details from './Pages/Details';
 import JoinProject from './Pages/JoinProject';
 import { Routes, Route } from 'react-router-dom';
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/projects/:id" element={<Projects />} />
         <Route path="/projectdetails" element={<ProjectDetails />} />
         <Route path="/charts" element={<Charts />} />
+        <Route path="/details" element={<Details />} />
         <Route path='/joinproject' element={<JoinProject/>}/>
       </Routes>
     </>
