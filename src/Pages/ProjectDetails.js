@@ -1,4 +1,4 @@
-import React, { useEffect ,useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from '../components/card'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
@@ -45,7 +45,7 @@ const BasicTable = () => {
                         <TableCell align="center"><Button id="btn" variant="contained" color="success" type="submit">ADD AS ADMIN</Button></TableCell>
                         <TableCell align="center"><Button id="btn" variant="contained" color="primary" type="submit">ADD AS MEMBER</Button></TableCell>
                     </TableRow>
-                   
+
                 </TableBody>
             </Table>
         </TableContainer>
@@ -56,48 +56,53 @@ const BasicTable = () => {
 const ProjectDetails = (navigate) => {
 
 
-   console.log("route",navigate)
+    console.log("route", navigate)
     var token = localStorage.getItem("Token")
-    var  Id=localStorage.getItem("Id")
-  console.log("Id",Id)
+    var Id = localStorage.getItem("Id")
+    console.log("Id", Id)
     const { id } = useParams()
-    console.log("id",id)
+    console.log("id", id)
     console.log(token)
- const [projectTasks,setProjectTasks]=useState([])
+    const [projectTasks, setProjectTasks] = useState([])
 
- const handler = () => {
-    var config = {
-        method: 'get',
-        url: `${baseurl}/project/gettaskofproject?userId=${Id}&projectId=${id}`,
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
+    const handler = () => {
+        var config = {
+            method: 'get',
+            url: `${baseurl}/project/gettaskofproject?userId=${Id}&projectId=${id}`,
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        };
+
+        axios(config)
+            .then(function (response) {
+                console.log(response.data);
+                setProjectTasks(() => response.data)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     };
 
-    axios(config)
-        .then(function (response) {
-            console.log(response.data);
-            setProjectTasks(() => response.data)
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-};
 
+    useEffect(() => {
 
- useEffect(()=>{
-
-    handler()
- },[])
+        handler()
+    }, [])
 
 
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <div className='mainprojectDetals'>
-                <div className='headCreateNewProject'>
+                {/* <div className='headCreateNewProject'>
                     <h1>PROJECT DETAILS</h1>
+                </div> */}
+
+                <div className="title m-4">
+                    <h2>TASK DETAILS</h2>
                 </div>
+
                 <div className='projectDetails'>
                     <div className='childProjectDetails'>
                         <p>Project Name: </p>
@@ -117,23 +122,23 @@ const ProjectDetails = (navigate) => {
                 <div className='parentCard'>
 
                     {
-                        projectTasks?.map((item,key)=>{
-                            return(
+                        projectTasks?.map((item, key) => {
+                            return (
                                 <>
-                                <ImgMediaCard
-                            title={item.taskName}
-                            tasknature={item.taskNature}
-                            status={item.status}
-                            createdby={item.createdBy}
-                            lastupdated={item.updatedAt}
-                        />
+                                    <ImgMediaCard
+                                        title={item.taskName}
+                                        tasknature={item.taskNature}
+                                        status={item.status}
+                                        createdby={item.createdBy}
+                                        lastupdated={item.updatedAt}
+                                    />
                                 </>
                             )
-                            
+
                         })
                     }
-                    
-                   
+
+
                 </div>
 
                 <div className='employees'>

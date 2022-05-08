@@ -44,10 +44,17 @@ function Projects() {
             console.log("cleanup")
         }
     }, [])
-   const toGo=(id,name)=>{
 
-navigate(`/projectdetails/${id}`,name)
-   }
+    const toGo = (id, name) => {
+
+        navigate(`/projectdetails/${id}`, name)
+    }
+
+    const Report = (id) => {
+        navigate(`/charts/${id}`)
+
+    }
+
     const handleDragEnd = (e) => {
         if (!e.destination) return;
         let tempData = Array.from(userdata);
@@ -93,6 +100,7 @@ navigate(`/projectdetails/${id}`,name)
                                     <th>Project Name</th>
                                     <th>Project Key</th>
                                     <th>Details</th>
+                                    <th>Reports</th>
                                 </thead>
 
                                 <Droppable droppableId="droppable-1">
@@ -115,7 +123,8 @@ navigate(`/projectdetails/${id}`,name)
                                                             <td {...provider.dragHandleProps}> = </td>
                                                             <td data-label="Project Name">{post?.projectName}</td>
                                                             <td data-label="Project Key">{post?.projectKey}</td>
-                                                            <td data-label="Details"><a onClick={()=>{toGo(post?._id,post?.projectName)}} className="btn">See Details</a></td>
+                                                            <td data-label="Details"><a onClick={() => { toGo(post?._id, post?.projectName) }} className="btn">See Details</a></td>
+                                                            <td data-label="Details"><a onClick={() => { Report(post?._id) }} className="btn">See Report</a></td>
                                                         </tr>
                                                     )}
 
@@ -130,29 +139,8 @@ navigate(`/projectdetails/${id}`,name)
                         </DragDropContext>
                     </div>
                 </div>
-                <div className="table-heading">
-                    <table className="table">
-                        <thead>
-                            <th>Project Name</th>
-                            <th>Project Key</th>
-                            <th>Details</th>
-                        </thead>
-                        {/* navigate(`/projects/${response.data.ID}`) */}
-                        <tbody>
-                            {userdata?.map((post, index) => (
-                               
-
-                                <tr  key={index}>
-                                    <td data-label="Project Name">{post?.projectName}</td>
-                                    <td data-label="Project Key">{post?.projectKey}</td>
-                                    <td data-label="Details" ><a onClick={()=>{toGo(post?._id)}} className="btn">See Details</a></td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
             </div>
-         
+
         </>
     )
 }
