@@ -27,10 +27,14 @@ function App() {
         <Route exact path="/" element={<Login />} />
         <Route path="/createtask" element={<CreateTask />} />
         <Route path="/createnewproject" element={<CreateNewProject />} />
-        <Route path="/projects/:id" element={<Projects />} />
-        <Route path="/projectdetails/:id" element={<ProjectDetails />} />
-        <Route path="/charts/:id" element={<Charts />} />
-        <Route path="/details/:id" element={<Details />} />
+//         <Route path="/projects/:id" element={<Projects />} />
+//         <Route path="/projectdetails/:id" element={<ProjectDetails />} />
+//         <Route path="/charts/:id" element={<Charts />} />
+//         <Route path="/details/:id" element={<Details />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/projectdetails" element={<ProjectDetails />} />
+        <Route path="/charts" element={<Charts />} />
+        <Route path="/details" element={<Details />} />
         <Route path='/joinproject' element={<JoinProject />} />
       </Routes>
 
